@@ -1,0 +1,4 @@
+MYSQL_ROOT_PASSWORD=contraseniaroot
+MYSQL_USER=nombreusuario
+MYSQL_PASSWORD=contraseniausuario
+MYSQL_DATABASE=films
