@@ -1,0 +1,32 @@
+services:
+  # Contenedor para la base de datos MySQL
+  db:
+    image: mysql:8.0.35-debian  # Usamos la imagen oficial de MySQL
+    container_name: fernangus-db-dev  # Nombre del contenedor para MySQL
+    ports:
+      - "3307:3306"  # Exponemos el puerto 3306 de MySQL en el puerto 3307 del host
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234  # Contraseña root
+      - MYSQL_USER=usuario  # Usuario adicional para la base de datos
+      - MYSQL_PASSWORD=1234  # Contraseña para el usuario adicional
+      - MYSQL_DATABASE=films  # Base de datos a crear
+    volumes:
+      - ./config/dev/mysql_dump:/docker-entrypoint-initdb.d  # Cargamos el dump de MySQL al iniciar
+      - mysql-data:/var/lib/mysql  # Volumen para persistir datos
+
+  # Contenedor para la aplicación en Apache
+  app:
+    build:
+      context: .  # Ruta del contexto para construir la imagen
+      dockerfile: Dockerfile.dev  # Usamos Dockerfile.dev para el entorno de desarrollo
+    container_name: fernangus-api-dev  # Nombre del contenedor de la aplicación
+    volumes:
+      - ./app:/var/www/html/app  # Montamos el código de la aplicación en el contenedor
+      - ./config/dev/virtualhost/fernangus.api.dev.conf:/etc/apache2/sites-enabled/fernangus.api.dev.conf  # Configuración del virtualhost
+    ports:
+      - "8080:80"  # Exponemos el puerto 80 de Apache en el puerto 8080 del host
+    depends_on:
+      - db  # Dependemos de MySQL, este contenedor debe levantarse antes
+
+volumes:
+  mysql-data:  # Volumen para persistir datos de MySQL

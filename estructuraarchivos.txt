@@ -1,0 +1,17 @@
+backend/
+├── app/  # Código de la aplicación
+│   ├── (archivos de la app)
+│   ├── dbconfiguration.yml  # Configuración de la base de datos
+├── config/
+│   ├── dev/
+│   │   ├── mysql_dump/films_dump.sql  # Dump de la BD en desarrollo
+│   │   ├── virtualhost/fernangus.api.dev.conf  # VirtualHost para dev
+│   ├── prod/
+│   │   ├── mysql_dump/films_dump.sql  # Dump de la BD en producción
+│   │   ├── virtualhost/fernangus.api.chickenkiller.com.conf  # VirtualHost prod
+├── .gitignore
+├── docker-compose-dev.yml
+├── docker-compose.yml
+├── Dockerfile
+├── Dockerfile.dev
+└── README.md
