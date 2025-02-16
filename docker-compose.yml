@@ -2,7 +2,7 @@ services:
   # Contenedor para la base de datos MySQL en producción
   db:
     image: mysql:8.0.35-debian  # Imagen oficial de MySQL
-    container_name: fernangus-db-prod  # Nombre del contenedor de MySQL en producción
+    container_name: fernangus-db  # Nombre del contenedor de MySQL en producción
     ports:
       - "3307:3306"  # Exponemos el puerto 3306 de MySQL en el puerto 3307 del host    
     restart: always  # Reinicia el contenedor automáticamente si se detiene
@@ -20,7 +20,7 @@ services:
     build:
       context: .  # Ruta del contexto para construir la imagen
       dockerfile: Dockerfile  # Usamos Dockerfile para producción
-    container_name: fernangus-api-prod  # Nombre del contenedor de la app en producción
+    container_name: fernangus-api  # Nombre del contenedor de la app en producción
     restart: always  # Reinicia el contenedor automáticamente
     volumes:
       - ./app:/var/www/html/app  # Montamos el código de la aplicación

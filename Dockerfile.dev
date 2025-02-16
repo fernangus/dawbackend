@@ -7,13 +7,12 @@ RUN apt-get update && apt-get upgrade -y
 
 # Instalamos Apache2 y PHP con las extensiones necesarias
 RUN apt-get install -y apache2 \
-    php \
+    php -y \
     php-mysql \
     php-yaml \
     curl \
-    nano \
-    libapache2-mod-php \
-    php-mysqli
+    nano 
+RUN apt-get install -y libapache2-mod-php php-mysqli
 
 # Habilitamos los módulos de Apache necesarios para reescritura de URLs y cabeceras
 RUN a2enmod rewrite headers

@@ -7,8 +7,8 @@ services:
       - "3307:3306"  # Exponemos el puerto 3306 de MySQL en el puerto 3307 del host
     environment:
       - MYSQL_ROOT_PASSWORD=1234  # Contraseña root
-      - MYSQL_USER=usuario  # Usuario adicional para la base de datos
-      - MYSQL_PASSWORD=1234  # Contraseña para el usuario adicional
+      - MYSQL_USER=dbuser  # Usuario adicional para la base de datos
+      - MYSQL_PASSWORD=dbuser  # Contraseña para el usuario adicional
       - MYSQL_DATABASE=films  # Base de datos a crear
     volumes:
       - ./config/dev/mysql_dump:/docker-entrypoint-initdb.d  # Cargamos el dump de MySQL al iniciar
@@ -22,7 +22,7 @@ services:
     container_name: fernangus-api-dev  # Nombre del contenedor de la aplicación
     volumes:
       - ./app:/var/www/html/app  # Montamos el código de la aplicación en el contenedor
-      - ./config/dev/virtualhost/fernangus.api.dev.conf:/etc/apache2/sites-enabled/fernangus.api.dev.conf  # Configuración del virtualhost
+      - ./config/dev/virtualhost/fernangus.api.dev.com.conf:/etc/apache2/sites-enabled/fernangus.api.dev.com.conf  # Configuración del virtualhost
     ports:
       - "8080:80"  # Exponemos el puerto 80 de Apache en el puerto 8080 del host
     depends_on:
