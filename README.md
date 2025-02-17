@@ -6,17 +6,21 @@
 
 docker-compose -f docker-compose-dev.yml up -d
 
+- para recrear contenedores ya creados se puede utilizar el comando adicional --force-recreate -
+
 3. Acceder a `http://localhost:8080`.
 
 ## Despliegue en Producción
 1. Configurar el dominio en FreeDNS.
 2. Crear el archivo `.env` en la raíz.
-3. Ejecutar:
+4. Ejecutar:
 
-docker-compose -f docker-compose.yml up -d
+docker-compose up -d
 
-4. Acceder a `http://fernangus.api.chickenkiller.com`.
+5. Acceder a `http://fernangus.api.chickenkiller.com`.
 
 ## Comandos útiles
-- `docker-compose down` → Detener contenedores.
-- `docker-compose ps` → Ver estado.
+- docker-compose down → Detener contenedores.
+- docker-compose down -v --rmi all → Detener contenedores -v para eliminar volumenes, --rmi all para eliminar imagenes asociadas.
+- docker-compose ps → Ver estado.
+- docker-compose logs → Arrancar logs de nuestros contenedores.
